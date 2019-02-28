@@ -34,7 +34,7 @@ class TableHeader extends Component {
 
         this.setState({ columns });
         this.props.onSelectSort({
-            field: selectedCol.field,
+            field: selectedCol.sortField || selectedCol.field,
             direction: selectedCol.isActive ? 'desc' : 'asc',
         });
     }
