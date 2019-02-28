@@ -1,0 +1,34 @@
+@import "../../../variables"
+
+.TableHeader
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  height: 60px
+  border-bottom: 2px solid $dark-blue
+
+  .col
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: center
+    cursor: pointer
+    flex-grow: 1
+    flex-basis: 0
+
+    &.-active
+
+      .sort-icon
+        transform: rotate(0)
+
+    &:first-child
+      flex-grow: 0
+      flex-basis: 60px
+
+  .name
+    font-weight: bold
+
+  .sort-icon
+    width: 10px
+    margin-left: 5px
+    transform: rotate(180deg)

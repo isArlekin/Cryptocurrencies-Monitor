@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import 'dashboard.sass'
+import './dashboard.sass'
 
 class Dashboard extends Component {
     render() {

@@ -1,0 +1,20 @@
+@import "../../../variables"
+
+.TableRow
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  height: 40px
+  border-bottom: 1px solid $dark-blue
+
+  .cel
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    flex-grow: 1
+    flex-basis: 0
+
+    &:first-child
+      flex-grow: 0
+      flex-basis: 60px

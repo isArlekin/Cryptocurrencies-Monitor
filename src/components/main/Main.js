@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Route, Switch} from "react-router-dom";
 
+import './main.sass'
 import Home from "../home/Home";
 import Dashboard from "../dashboard/Dashboard";
 
