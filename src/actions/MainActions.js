@@ -11,11 +11,11 @@ export function getCryptocurrencies(requestObj) {
             payload: requestObj,
         });
 
-        getMorePhotos();
+        requestCryptocurrencies(requestObj, dispatch);
     }
 }
 
-function getMorePhotos(requestObj, dispatch) {
+function requestCryptocurrencies(requestObj, dispatch) {
     axios.get('https://api.coingecko.com/api/v3/coins/markets', requestObj)
         .then(res => {
             dispatch({

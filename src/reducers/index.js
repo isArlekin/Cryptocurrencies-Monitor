@@ -1,6 +1,8 @@
 import {combineReducers} from "redux";
 import {topListPage} from "./topListPage";
+import { connectRouter } from 'connected-react-router';
 
-export const rootReducer = combineReducers({
+export const createRootReducer = history => combineReducers({
+    router: connectRouter(history),
     topListPage: topListPage,
 });

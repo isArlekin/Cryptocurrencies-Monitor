@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
 
 import Main from "../components/main/Main";
-import {connect} from "react-redux";
 
 
 class PageContainer extends Component{
@@ -17,7 +17,6 @@ class PageContainer extends Component{
                 data={page.data}
                 isFetching={page.isFetching}
                 error={page.error}
-
             />
         )
     }

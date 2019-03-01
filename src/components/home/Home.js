@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types'
 
 import './home.sass';
 import CurrencyTable from "../currency-table/CurrencyTable";
@@ -8,8 +8,8 @@ import {Utils} from "../../core/utils";
 class Home extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            data: null,
             columns: [
                 {
                     title: 'Name',
@@ -34,10 +34,8 @@ class Home extends Component {
                     sortField: 'volume',
                     sortingEnabled: true,
                 }
-            ],
-            loading: true,
+            ]
         };
-
     }
 
     buildRequestParams() {
@@ -52,20 +50,7 @@ class Home extends Component {
 
     componentDidMount() {
         const defaultRequestParams = this.buildRequestParams();
-        this.requestData(defaultRequestParams);
-    }
-
-    requestData(params) {
-        this.setState({ loading: true });
-        axios.get('https://api.coingecko.com/api/v3/coins/markets', {
-            params
-        })
-            .then(res => {
-                const data = this.mapData(res.data);
-                const loading = false;
-                console.log(data);
-                this.setState({ data, loading })
-            });
+        this.props.getCriptocurrencies({ params: defaultRequestParams });
     }
 
     mapData(data) {
@@ -80,25 +65,32 @@ class Home extends Component {
     applySort(sortInfo) {
         const requestParams = this.buildRequestParams();
 
-        console.log(sortInfo);
         requestParams.order = `${sortInfo.field}_${sortInfo.direction}`;
 
-        this.requestData(requestParams);
+        this.props.getCriptocurrencies({ params: requestParams });
     }
 
     render() {
+        const data = this.mapData(this.props.data);
         return (
             <div className="Home">
                 <h2 className="page-title">Top 10</h2>
                 <div className="page-content">
                     <CurrencyTable columns={this.state.columns}
-                                   data={this.state.data}
-                                   loading={this.state.loading}
+                                   data={data}
+                                   loading={this.props.isFetching}
                                    onSelectSort={(sortInfo) => this.applySort(sortInfo)}/>
                 </div>
             </div>
         );
     }
 }
+
+Home.propTypes = {
+    isFetching: PropTypes.bool.isRequired,
+    data: PropTypes.array.isRequired,
+    getCriptocurrencies: PropTypes.func.isRequired,
+    error: PropTypes.string,
+};
 
 export default Home;

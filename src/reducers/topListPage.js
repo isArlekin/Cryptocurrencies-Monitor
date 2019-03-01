@@ -13,7 +13,7 @@ const initialState = {
 export function topListPage(state = initialState, action) {
     switch (action.type) {
         case GET_CRYPTOCURRENCIES_REQUEST:
-            return { ...state, data: action.payload, isFetching: true, error: '' };
+            return { ...state, isFetching: true, error: '' };
 
         case GET_CRYPTOCURRENCIES_SUCCESS:
             return { ...state, data: action.payload, isFetching: false, error: '' };
