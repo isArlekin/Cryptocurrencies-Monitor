@@ -1,8 +1,8 @@
 import {
     GET_CRYPTOCURRENCIES_FAIL,
     GET_CRYPTOCURRENCIES_REQUEST,
-    GET_CRYPTOCURRENCIES_SUCCESS
-} from "../actions/MainActions";
+    GET_CRYPTOCURRENCIES_SUCCESS, UPDATE_CRYPTOCURRENCIES_SUCCESS
+} from '../actions/MainActions';
 
 const initialState = {
     data: [],
@@ -10,8 +10,11 @@ const initialState = {
     error: '',
 };
 
-export function topListPage(state = initialState, action) {
+export function topListPageReducer(state = initialState, action) {
     switch (action.type) {
+        case UPDATE_CRYPTOCURRENCIES_SUCCESS:
+            return { ...state, data: action.payload };
+
         case GET_CRYPTOCURRENCIES_REQUEST:
             return { ...state, isFetching: true, error: '' };
 

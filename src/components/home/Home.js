@@ -72,6 +72,7 @@ class Home extends Component {
 
     render() {
         const data = this.mapData(this.props.data);
+        console.log('Table rendering!');
         return (
             <div className="Home">
                 <h2 className="page-title">Top 10</h2>
