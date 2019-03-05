@@ -15,7 +15,7 @@ export function getCryptocurrencies(requestObj) {
             payload: requestObj,
         });
 
-        requestCryptocurrencies(requestObj, dispatch);
+        return requestCryptocurrencies(requestObj, dispatch);
     }
 }
 
@@ -26,9 +26,7 @@ export function updateCryptocurrencies(requestObj) {
             payload: requestObj,
         });
 
-        console.log(requestObj);
-
-        axios.get('https://api.coingecko.com/api/v3/coins/markets', requestObj)
+        return axios.get(`${process.env.REACT_APP_API}/coins/markets`, requestObj)
             .then(res => {
                 dispatch({
                     type: UPDATE_CRYPTOCURRENCIES_SUCCESS,
@@ -46,7 +44,7 @@ export function updateCryptocurrencies(requestObj) {
 }
 
 function requestCryptocurrencies(requestObj, dispatch) {
-    axios.get('https://api.coingecko.com/api/v3/coins/markets', requestObj)
+    return axios.get(`${process.env.REACT_APP_API}/coins/markets`, requestObj)
         .then(res => {
             dispatch({
                 type: GET_CRYPTOCURRENCIES_SUCCESS,

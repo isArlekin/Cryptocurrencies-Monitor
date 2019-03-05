@@ -20,7 +20,7 @@ class HomeContainer extends Component{
 
 const mapStateToProps = srore => {
     return {
-        page: srore.topListPage,
+        page: srore.data,
     };
 };
 
