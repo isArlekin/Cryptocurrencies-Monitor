@@ -2,7 +2,7 @@ import React from 'react';
 import down from '../../../images/down.svg';
 
 function CurrencySelectorHeader(props) {
-    const selectedItem = props.selectedItem || null;
+    const { selectedItem } = props;
     return (
         <div onClick={props.toggle}
              className="currency-selector-header">

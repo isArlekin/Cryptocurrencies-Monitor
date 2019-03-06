@@ -76,4 +76,8 @@ CurrencySelector.propTypes = {
     selectCurrency: PropTypes.func.isRequired,
 };
 
+CurrencySelector.defaultProps = {
+    data: [],
+};
+
 export default enhanceWithClickOutside(CurrencySelector);
