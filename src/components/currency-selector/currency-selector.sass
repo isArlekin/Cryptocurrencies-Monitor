@@ -1,0 +1,76 @@
+@import "../../variables"
+
+$padding: 8px
+
+.currency-selector
+  min-width: 200px
+  max-width: 360px
+  border-radius: 4px
+  border: 1px solid $light-gray
+  font-size: 16px
+  display: inline-flex
+  flex-direction: column
+  color: $dark-blue
+  overflow: hidden
+
+  &.-active
+
+    .currency-selector-header
+
+      &__icon
+        transform: rotate(180deg)
+
+    .currency-selector-list
+      display: block
+
+
+  &-header
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
+    height: 42px
+    padding: $padding
+    cursor: pointer
+    user-select: none
+
+    &__placeholder
+      color: $light-gray
+
+    &__value
+      color: $cerulean
+
+    &__icon
+      padding: 2px
+      width: 18px
+      height: 18px
+
+  &-list
+    display: none
+    max-height: 300px
+    overflow: hidden auto
+
+    &__item
+      display: flex
+      flex-direction: row
+      align-items: center
+      padding-left: $padding
+      padding-right: $padding
+      height: 34px
+      cursor: pointer
+      transition: all ease .2s
+      text-overflow: ellipsis
+      white-space: nowrap
+      overflow: hidden
+
+      &:hover
+        color: #ffffff
+        background-color: $cerulean
+
+  &__no-data
+    font-size: 18px
+    color: $light-gray
+    height: 60px
+    display: flex
+    justify-content: center
+    align-items: center

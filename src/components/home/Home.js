@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import './home.sass';
 import CurrencyTable from "../currency-table/CurrencyTable";
 import {Utils} from "../../core/utils";
+import {CURRENCY, INITIAL_DATA_ORDER} from '../../core/constants';
 
 class Home extends Component {
     constructor(props) {
@@ -40,8 +41,8 @@ class Home extends Component {
 
     buildRequestParams() {
         return {
-            vs_currency: 'usd',
-            order: 'market_cap_desc',
+            vs_currency: CURRENCY,
+            order: INITIAL_DATA_ORDER,
             per_page: 10,
             page: 1,
             sparkline: false,
