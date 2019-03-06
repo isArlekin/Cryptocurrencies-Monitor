@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import classNames from  'classnames';
 import sortIcon from '../../../images/sort-down.svg';
 import './table-header.sass';
 
@@ -41,8 +41,7 @@ class TableHeader extends Component {
 
     render() {
         const columns = this.state.columns.map((col, i) => {
-            const isActive = col.isActive ? '-active' : '';
-            return <div key={i} onClick={() => this.applySort(i)} className={`col ${isActive}`}>
+            return <div key={i} onClick={() => this.applySort(i)} className={classNames('col', { '-active': col.isActive })}>
                     <div className="name">{col.title}</div>
                     {col.sortingEnabled && col.sortApplied && <img className="sort-icon" src={sortIcon}/>}
                 </div>

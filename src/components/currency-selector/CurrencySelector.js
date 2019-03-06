@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import enhanceWithClickOutside from 'react-click-outside'
 import './currency-selector.sass';
 import CurrencySelectorHeader from './currency-selector-header/CurrencySelectorHeader';
+import classNames from  'classnames';
 
 class CurrencySelector extends Component {
 
@@ -47,11 +48,10 @@ class CurrencySelector extends Component {
     }
 
     render() {
-        const statusClass = this.state.isOpened ? '-active' : '';
         const items = this.renderItems(this.props.data);
         const isDataToDisplaying = !!this.props.data;
         return (
-            <div onClick={e => this.preventClick(e)} className={`currency-selector ${statusClass}`}>
+            <div onClick={e => this.preventClick(e)} className={classNames('currency-selector', { '-active': this.state.isOpened })}>
                 <CurrencySelectorHeader
                     selectedItem={this.state.selectedItem}
                     toggle={e => this.toggle(e)}
