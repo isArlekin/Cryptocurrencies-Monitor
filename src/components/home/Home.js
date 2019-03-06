@@ -63,13 +63,13 @@ class Home extends Component {
         });
     }
 
-    applySort(sortInfo) {
+    applySort = (sortInfo) => {
         const requestParams = this.buildRequestParams();
 
         requestParams.order = `${sortInfo.field}_${sortInfo.direction}`;
 
         this.props.getCriptocurrencies({ params: requestParams });
-    }
+    };
 
     render() {
         const data = this.mapData(this.props.data);
@@ -81,7 +81,7 @@ class Home extends Component {
                     <CurrencyTable columns={this.state.columns}
                                    data={data}
                                    loading={this.props.isFetching}
-                                   onSelectSort={(sortInfo) => this.applySort(sortInfo)}/>
+                                   onSelectSort={this.applySort}/>
                 </div>
             </div>
         );

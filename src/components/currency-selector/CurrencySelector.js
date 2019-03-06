@@ -20,22 +20,22 @@ class CurrencySelector extends Component {
         }
     }
 
-    toggle(e) {
+    toggle = () => {
         this.setState({
             isOpened: !this.state.isOpened,
         })
-    }
+    };
 
-    selectItem(selectedItem) {
+    selectItem (selectedItem) {
         this.props.selectCurrency(selectedItem);
         this.setState({ selectedItem });
         this.toggle();
-    }
+    };
 
-    preventClick(e) {
+    preventClick = (e) => {
         e.stopPropagation();
         e.preventDefault();
-    }
+    };
 
     renderItems(data) {
         return data.map(item => {
@@ -51,10 +51,10 @@ class CurrencySelector extends Component {
         const items = this.renderItems(this.props.data);
         const isDataToDisplaying = !!this.props.data;
         return (
-            <div onClick={e => this.preventClick(e)} className={classNames('currency-selector', { '-active': this.state.isOpened })}>
+            <div onClick={this.preventClick} className={classNames('currency-selector', { '-active': this.state.isOpened })}>
                 <CurrencySelectorHeader
                     selectedItem={this.state.selectedItem}
-                    toggle={e => this.toggle(e)}
+                    toggle={this.toggle}
                 />
                 <div className="currency-selector-list">
                     { !isDataToDisplaying && <div className="currency-selector__no-data">No data to display</div> }
