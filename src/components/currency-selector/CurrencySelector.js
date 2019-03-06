@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import enhanceWithClickOutside from 'react-click-outside'
 import './currency-selector.sass';
 import CurrencySelectorHeader from './currency-selector-header/CurrencySelectorHeader';
@@ -64,5 +65,15 @@ class CurrencySelector extends Component {
         );
     }
 }
+
+const itemInterface = PropTypes.shape({
+    name: PropTypes.string.required,
+    value: PropTypes.string.required,
+});
+
+CurrencySelector.propTypes = {
+    data: PropTypes.arrayOf(itemInterface).isRequired,
+    selectCurrency: PropTypes.func.isRequired,
+};
 
 export default enhanceWithClickOutside(CurrencySelector);

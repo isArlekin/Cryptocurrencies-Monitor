@@ -91,8 +91,8 @@ class Home extends Component {
 Home.propTypes = {
     isFetching: PropTypes.bool.isRequired,
     data: PropTypes.array.isRequired,
-    getCriptocurrencies: PropTypes.func.isRequired,
     error: PropTypes.string,
+    getCriptocurrencies: PropTypes.func.isRequired,
 };
 
 export default Home;

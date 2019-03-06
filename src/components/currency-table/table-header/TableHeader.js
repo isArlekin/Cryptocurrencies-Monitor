@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from  'classnames';
 import sortIcon from '../../../images/sort-down.svg';
 import './table-header.sass';
+import {columnInterface} from '../CurrencyTable.interface';
 
 class TableHeader extends Component {
     constructor(props) {
@@ -56,5 +58,10 @@ class TableHeader extends Component {
         );
     }
 }
+
+TableHeader.propTypes = {
+    columns: PropTypes.arrayOf(columnInterface).isRequired,
+    onSelectSort: PropTypes.func.isRequired,
+};
 
 export default TableHeader;

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import './currency-table.sass';
 import spinner from '../../images/spinner.gif';
 import TableHeader from "./table-header/TableHeader";
 import TableRow from "./table-row/TableRow";
+import {columnInterface} from './CurrencyTable.interface';
 
 class CurrencyTable extends Component {
     renderRows() {
@@ -28,5 +29,12 @@ class CurrencyTable extends Component {
         );
     }
 }
+
+CurrencyTable.propTypes = {
+    columns: PropTypes.arrayOf(columnInterface).isRequired,
+    data: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    onSelectSort: PropTypes.func.isRequired,
+};
 
 export default CurrencyTable;
