@@ -6,6 +6,8 @@ import {getCryptocurrencies} from "../actions/MainActions";
 class HomeContainer extends Component{
     render() {
         const { page, getCriptocurrencies } = this.props;
+        
+        console.log(this.props);
 
         return (
             <Home

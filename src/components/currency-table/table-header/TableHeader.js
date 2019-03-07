@@ -8,9 +8,8 @@ import {columnInterface} from '../CurrencyTable.interface';
 class TableHeader extends Component {
     constructor(props) {
         super(props);
-        let columns = props.columns || [];
 
-        columns = columns.map(col => {
+        let columns = props.columns.map(col => {
             return Object.assign({}, col, {
                 isActive: false,
                 sortApplied: false
@@ -45,7 +44,7 @@ class TableHeader extends Component {
         const columns = this.state.columns.map((col, i) => {
             return <div key={i} onClick={() => this.applySort(i)} className={classNames('col', { '-active': col.isActive })}>
                     <div className="name">{col.title}</div>
-                    {col.sortingEnabled && col.sortApplied && <img className="sort-icon" src={sortIcon}/>}
+                    {col.sortingEnabled && col.sortApplied && <img className="sort-icon" alt="Sorting icon" src={sortIcon}/>}
                 </div>
         });
         return (

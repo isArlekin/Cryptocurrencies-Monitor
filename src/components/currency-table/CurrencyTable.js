@@ -8,10 +8,15 @@ import {columnInterface} from './CurrencyTable.interface';
 
 class CurrencyTable extends Component {
     renderRows() {
-        const data = this.props.data || [];
+        const data = this.props.data;
 
         return data.map((row, index) => {
-            return <TableRow key={row.id} columns={this.props.columns} data={row} rowIndex={index + 1}/>
+            return <TableRow key={row.id}
+                             columns={this.props.columns}
+                             data={row}
+                             rowIndex={index + 1}
+                             deleteItem={() => this.props.onDeleteItem(row)}
+            />
         });
     }
 
@@ -23,7 +28,7 @@ class CurrencyTable extends Component {
                     { this.renderRows() }
                 </div>
                 { this.props.loading && <div className="overlay">
-                    <img src={spinner} className="spinner"/>
+                    <img src={spinner} alt="Loading" className="spinner"/>
                 </div>}
             </div>
         );
@@ -33,8 +38,14 @@ class CurrencyTable extends Component {
 CurrencyTable.propTypes = {
     columns: PropTypes.arrayOf(columnInterface).isRequired,
     data: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
-    onSelectSort: PropTypes.func.isRequired,
+    loading: PropTypes.bool,
+    onSelectSort: PropTypes.func,
+    onDeleteItem: PropTypes.func,
+};
+
+CurrencyTable.defaultProps = {
+    data: [],
+    loading: false,
 };
 
 export default CurrencyTable;

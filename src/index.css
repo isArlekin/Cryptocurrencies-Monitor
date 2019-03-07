@@ -23,3 +23,18 @@ a {
   vertical-align: baseline;
   text-decoration: none;
 }
+
+button {
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+}
+
+button:focus {
+  outline: none;
+}

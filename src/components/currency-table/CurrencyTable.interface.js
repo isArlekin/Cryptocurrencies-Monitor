@@ -6,4 +6,5 @@ export const columnInterface = PropTypes.shape({
     field: PropTypes.string.isRequired,
     sortField: PropTypes.string,
     sortingEnabled: PropTypes.bool,
+    controls: PropTypes.bool,
 });
