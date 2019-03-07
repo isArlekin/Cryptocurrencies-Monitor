@@ -13,10 +13,7 @@ export default function configureStore() {
         createRootReducer(history),
         persistedState,
         compose(
-            applyMiddleware(
-                routerMiddleware(history),
-                thunk,
-            ),
+            applyMiddleware(...getMiddlewares()),
         ),
     );
 
@@ -28,4 +25,20 @@ export default function configureStore() {
     });
 
     return store;
+}
+
+function getMiddlewares() {
+    const common = [
+        routerMiddleware(history),
+        thunk,
+    ];
+
+    if (process.env.NODE_ENV === 'development') {
+        return [
+            ...common,
+            require('redux-logger').logger,
+        ];
+    }
+
+    return common;
 }

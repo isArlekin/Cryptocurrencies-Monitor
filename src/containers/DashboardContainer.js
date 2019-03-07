@@ -27,15 +27,11 @@ const mapStateToProps = store => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getCriptocurrencies: (requestObj) => dispatch(getCryptocurrencies(requestObj)),
-        saveCurrency: (currencyId) => dispatch(addCurrencyToLocalStorage(currencyId)),
-        removeCurrency: (currencyId) => dispatch(removeCurrencyFromLocalStorage(currencyId)),
-    }
-};
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    {
+        getCriptocurrencies: getCryptocurrencies,
+        saveCurrency: addCurrencyToLocalStorage,
+        removeCurrency: removeCurrencyFromLocalStorage,
+    },
 )(DashboardContainer);

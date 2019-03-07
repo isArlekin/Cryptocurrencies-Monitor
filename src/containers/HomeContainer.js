@@ -26,13 +26,9 @@ const mapStateToProps = srore => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getCriptocurrencies: (requestObj) => dispatch(getCryptocurrencies(requestObj)),
-    }
-};
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    {
+        getCriptocurrencies: getCryptocurrencies,
+    },
 )(HomeContainer)
