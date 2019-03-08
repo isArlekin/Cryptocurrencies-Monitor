@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import './home.sass';
 import CurrencyTable from "../currency-table/CurrencyTable";
@@ -45,13 +45,11 @@ class Home extends Component {
             order: INITIAL_DATA_ORDER,
             per_page: 10,
             page: 1,
-            sparkline: false,
         }
     }
 
     componentDidMount() {
-        const defaultRequestParams = this.buildRequestParams();
-        this.props.getCriptocurrencies({ params: defaultRequestParams });
+        this.props.getCryptocurrencies({ params: this.buildRequestParams() });
     }
 
     mapData(data) {
@@ -68,12 +66,11 @@ class Home extends Component {
 
         requestParams.order = `${sortInfo.field}_${sortInfo.direction}`;
 
-        this.props.getCriptocurrencies({ params: requestParams });
+        this.props.getCryptocurrencies({ params: requestParams });
     };
 
     render() {
         const data = this.mapData(this.props.data);
-        console.log('Table rendering!');
         return (
             <div className="Home">
                 <h2 className="page-title">Top 10</h2>
@@ -92,7 +89,7 @@ Home.propTypes = {
     isFetching: PropTypes.bool.isRequired,
     data: PropTypes.array.isRequired,
     error: PropTypes.string,
-    getCriptocurrencies: PropTypes.func.isRequired,
+    getCryptocurrencies: PropTypes.func.isRequired,
 };
 
 export default Home;

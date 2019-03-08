@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import './dashboard.sass'
 import CurrencySelector from '../currency-selector/CurrencySelector';
-import {CURRENCY, INITIAL_DATA_ORDER} from '../../core/constants';
 import CurrencyTable from '../currency-table/CurrencyTable';
 
 class Dashboard extends Component {
@@ -44,45 +43,24 @@ class Dashboard extends Component {
         };
     }
 
-    componentDidMount() {
-        this.props.getCriptocurrencies({
-            params: {
-                vs_currency: CURRENCY,
-                order: INITIAL_DATA_ORDER,
-                per_page: 200,
-                page: 1,
-                sparkline: false,
-            },
-        });
-    }
-
     onSelectCurrency = (selectedItem) => {
         this.props.saveCurrency(selectedItem.value);
     };
 
-    applySort = () => {
+    applySort = (sortInfo) => {
+        const requestParams = {
+            order: `${sortInfo.field}_${sortInfo.direction}`
+        };
 
+        this.props.getFilteredCryptocurrencies(requestParams);
     };
 
     deleteItem = (item) => {
         this.props.removeCurrency(item.id);
     };
 
-    mapDataForSelect(data) {
-        return data.map(item => ({
-            name: item.name,
-            value: item.id,
-        }));
-    }
-
-    filterDataBySelectedIds(data, selectedIds) {
-        return data.filter(currency => selectedIds.findIndex(id => id === currency.id) > -1);
-    }
-
     render() {
-        const { data, savedCurrencies } = this.props;
-        const preparedData = this.mapDataForSelect(data);
-        const selectedData = this.filterDataBySelectedIds(data, savedCurrencies);
+        const { filteredData, isFetching } = this.props;
 
         return (
             <div className="Dashboard">
@@ -90,14 +68,14 @@ class Dashboard extends Component {
 
                 <div className="page-content">
                     <div className="row">
-                        <CurrencySelector data={preparedData}
-                                          selectCurrency={this.onSelectCurrency}
+                        <CurrencySelector selectCurrency={this.onSelectCurrency}
                         />
                     </div>
 
                     <div className="row">
                         <CurrencyTable columns={this.state.columns}
-                                       data={selectedData}
+                                       data={filteredData}
+                                       loading={isFetching}
                                        onSelectSort={this.applySort}
                                        onDeleteItem={this.deleteItem}
                         />
@@ -108,6 +86,12 @@ class Dashboard extends Component {
     }
 }
 
-
+Dashboard.propTypes = {
+    filteredData: PropTypes.array.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    getFilteredCryptocurrencies: PropTypes.func.isRequired,
+    saveCurrency: PropTypes.func.isRequired,
+    removeCurrency: PropTypes.func.isRequired,
+};
 
 export default Dashboard;

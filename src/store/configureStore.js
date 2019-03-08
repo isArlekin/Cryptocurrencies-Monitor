@@ -18,7 +18,6 @@ export default function configureStore() {
     );
 
     store.subscribe(() => {
-        console.log("Saving store - ", store.getState());
         saveState({
             savedCurrencies: store.getState().savedCurrencies,
         });

@@ -1,9 +1,13 @@
 import {
     GET_CRYPTOCURRENCIES_FAIL,
     GET_CRYPTOCURRENCIES_REQUEST,
-    GET_CRYPTOCURRENCIES_SUCCESS, UPDATE_CRYPTOCURRENCIES_REQUEST, UPDATE_CRYPTOCURRENCIES_SUCCESS
-} from '../actions/MainActions';
-import {START_DATA_UPDATING, STOP_DATA_UPDATING} from '../actions/DataUpdatingAction';
+    GET_CRYPTOCURRENCIES_SUCCESS} from '../actions/MainActions';
+import {
+    START_TOP_LIST_DATA_UPDATING,
+    STOP_TOP_LIST_DATA_UPDATING,
+    UPDATE_CRYPTOCURRENCIES_REQUEST,
+    UPDATE_CRYPTOCURRENCIES_SUCCESS
+} from '../actions/TopListDataUpdatingActions';
 import {CURRENCY, INITIAL_DATA_ORDER} from '../core/constants';
 
 const initialState = {
@@ -18,15 +22,14 @@ const initialState = {
         }
     },
     isFetching: false,
+    intervalId: null,
     error: '',
 };
 
-export function dataReducer(state = initialState, action) {
+export function topListDataReducer(state = initialState, action) {
     switch (action.type) {
-        case START_DATA_UPDATING:
-            return { ...state, intervalId: action.payload };
-
-        case STOP_DATA_UPDATING:
+        case START_TOP_LIST_DATA_UPDATING:
+        case STOP_TOP_LIST_DATA_UPDATING:
             return { ...state, intervalId: action.payload };
 
         case UPDATE_CRYPTOCURRENCIES_REQUEST:

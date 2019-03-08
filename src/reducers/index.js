@@ -1,10 +1,14 @@
 import {combineReducers} from "redux";
-import {dataReducer} from "./DataReducer";
+import {topListDataReducer} from "./TopListDataReducer";
 import { connectRouter } from 'connected-react-router';
 import {savedCurrenciesReducer} from './SavedCurrenciesReducer';
+import {filteredDataReducer} from './FilteredDataReducer';
+import {selectComponentReducer} from './SelectComponentReducer';
 
 export const createRootReducer = history => combineReducers({
     router: connectRouter(history),
-    data: dataReducer,
+    topListData: topListDataReducer,
+    selectComponent: selectComponentReducer,
     savedCurrencies: savedCurrenciesReducer,
+    filteredData: filteredDataReducer,
 });

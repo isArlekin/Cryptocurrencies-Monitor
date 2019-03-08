@@ -4,6 +4,9 @@ import enhanceWithClickOutside from 'react-click-outside'
 import './currency-selector.sass';
 import CurrencySelectorHeader from './currency-selector-header/CurrencySelectorHeader';
 import classNames from  'classnames';
+import {connect} from 'react-redux';
+import {CURRENCY, INITIAL_DATA_ORDER} from '../../core/constants';
+import {getCryptocurrenciesList} from '../../actions/SelectCurrenciesComponentActions';
 
 class CurrencySelector extends Component {
 
@@ -13,6 +16,18 @@ class CurrencySelector extends Component {
             isOpened: false,
             selectedItem: null
         };
+    }
+
+    componentDidMount() {
+        this.props.getCryptocurrenciesList({
+            params: {
+                vs_currency: CURRENCY,
+                order: INITIAL_DATA_ORDER,
+                per_page: 200,
+                page: 1,
+                sparkline: false,
+            }
+        });
     }
 
     handleClickOutside() {
@@ -80,4 +95,19 @@ CurrencySelector.defaultProps = {
     data: [],
 };
 
-export default enhanceWithClickOutside(CurrencySelector);
+const mapStateToProps = store => {
+    return {
+        data: store.selectComponent.data,
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getCryptocurrenciesList: requestObj => dispatch(getCryptocurrenciesList(requestObj)),
+    }
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(enhanceWithClickOutside(CurrencySelector));
